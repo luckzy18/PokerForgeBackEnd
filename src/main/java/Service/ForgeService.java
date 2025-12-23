@@ -3,15 +3,13 @@ package Service;// The REST controller that handles HTTP requests.
 // for auto-configuration; the @CrossOrigin annotation enables CORS.
 
 
-import org.springframework.web.bind.annotation.*;
-
-@RestController
-@CrossOrigin
-public class ForgeController {
-    Forger fg;
-    public ForgeController(Forger fg){this.fg=fg;}
+public class ForgeService implements ForgeImp{
+    ForgeImp fg;
+    public ForgeService(ForgeImp fg){this.fg=fg;}
 
 
+    @Override
+    public void playerAction(String action, int amount) {
 
-
+    }
 }

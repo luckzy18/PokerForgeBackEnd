@@ -51,6 +51,16 @@
             width: 100%;
             font-size: 0.9rem;
         }
+        .Table-cards{
+            margin-bottom:60px;
+
+        }
+        .Player-Cards{
+            margin-top:30px;
+        }
+        .Information-Board{
+            color:red;
+        }
     </style>
 </head>
 <body>
@@ -60,16 +70,34 @@
 
 <div class="container">
     <h2>Poker Table</h2>
+   <div class="Table-cards">
+       <label>Card1</label>
+       <label>Card2</label>
+       <label>Card3</label>
+       <label>Card4</label>
+       <label>Card5</label>
+   </div>
+    <div class="Information-Board">
+        <label>Action</label>
+    </div>
+    <div class="Player-Cards">
+        <label>Card1</label>
+        <label>Card2</label>
+    </div>
     <p>Use the controls below to manage betting actions.</p>
 
     <div class="bet-controls">
-        <button class="call">Call</button>
-        <button class="raise">Raise</button>
-        <button class="fold">Fold</button>
+        <button class="call" oncall="call_request();">Call</button>
+        <button class="raise" oncall ="raise_request()">Raise</button>
+        <button class="fold" oncall ="fold_request()">Fold</button>
+        <button class="Check" oncall ="check_request()">Check</button>
     </div>
+
+
 
     <div class="bet-slider">
         <p>Choose Raise Amount:</p>
+        <input type="text" id="bet" placeholder="£"/>
         <input type="range" min="0" max="500" value="50" class="slider" />
     </div>
 </div>
@@ -78,4 +106,37 @@
     <p>&copy; 2025 PokerForge. All rights reserved.</p>
 </footer>
 </body>
+<script>
+    function sendAction(type, amount = 0) {
+        fetch(`/games/actions`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                playerId: PLAYER_ID,
+                type: type,
+                amount: amount
+            })
+        })
+            .then(res=>{
+                if(!res.ok){
+                    throw new Error("Action not allowed");
+                }
+                return res.json();
+            })
+            .then(data =>{
+                console.log("Action Successful," ,data);
+            })
+            .catch(error =>{
+                console.log(err.message);
+            })
+    }
+
+    function check_request() {
+        sendAction("CHECK",0);
+    }
+
+
+</script>
 </html>
