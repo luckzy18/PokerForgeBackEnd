@@ -24,10 +24,18 @@ public class ForgeController {
     }
 
     @GetMapping("/games/actions")
-    public String PlayerAction(String action,int amount){
+    public String playerAction(String action,int amount){
         String response="ok" ;
         fg.playerAction(action,amount);
         return response;
+    }
+
+    @GetMapping("/games/start")
+    public double startGame(){
+        double gameSession=fg.startGame();
+
+        return gameSession;
+
     }
 
 }

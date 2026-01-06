@@ -66,8 +66,10 @@
 <body>
 <header>
     <h1>PokerForge</h1>
+    <a href="Play.html">Play</a>
+    <a href="Home.html">Home</a>
 </header>
-
+<Button class="Start" oncall ="Start()">Start</Button>
 <div class="container">
     <h2>Poker Table</h2>
    <div class="Table-cards">
@@ -80,17 +82,19 @@
     <div class="Information-Board">
         <label>Action</label>
     </div>
-    <div class="Player-Cards">
-        <label>Card1</label>
-        <label>Card2</label>
-    </div>
-    <p>Use the controls below to manage betting actions.</p>
 
-    <div class="bet-controls">
-        <button class="call" oncall="call_request();">Call</button>
-        <button class="raise" oncall ="raise_request()">Raise</button>
-        <button class="fold" oncall ="fold_request()">Fold</button>
-        <button class="Check" oncall ="check_request()">Check</button>
+    </div>
+<div class="Player-Cards">
+    <label>Card1</label>
+    <label>Card2</label>
+</div>
+<p>Use the controls below to manage betting actions.</p>
+
+<div class="bet-controls">
+    <button class="call" oncall="call_request();">Call</button>
+    <button class="raise" oncall ="raise_request()">Raise</button>
+    <button class="fold" oncall ="fold_request()">Fold</button>
+    <button class="Check" oncall ="check_request()">Check</button>
     </div>
 
 
@@ -107,6 +111,28 @@
 </footer>
 </body>
 <script>
+    let gameID;
+    function start(){
+        fetch('/games/start',{
+            method: 'FETCH',
+            headers:{
+                "Content-Type":"application/json"},
+
+        })
+            .then(res=>{
+                if(!res.ok){
+                    throw new Error("Something went wrong");
+                }
+                return res.json();
+            })
+            .then(data=>{
+                gameID=data.gameId;
+                console.log("Game started with ID," ,data);
+            })
+            .catch(error =>{
+                console.log(err.message);
+            })
+    }
     function sendAction(type, amount = 0) {
         fetch(`/games/actions`, {
             method: "POST",
