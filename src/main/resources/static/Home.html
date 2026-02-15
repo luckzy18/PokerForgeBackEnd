@@ -16,7 +16,39 @@
         header {
             background: #272727;
             padding: 20px;
+            display: flex;
+            justify-content: space-between; /* pushes left and right to edges */
+            align-items: center; /* vertically center items */
         }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* space between h1 and nav links */
+        }
+
+        nav a {
+            color: #f5f5f5;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .account-btn {
+            background: #e63946;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none; /* important for <a> */
+            display: inline-block;
+        }
+
+        .account-btn:hover {
+            background: #b41e2f;
+        }
+
         h1 {
             margin: 0;
             font-size: 2.5rem;
@@ -44,10 +76,15 @@
 </head>
 <body>
 <header>
-    <h1>PokerForge</h1>
-    <a href="Play.html">Play</a>
-    <a href="Home.html">Home</a>
-    <a href="Framework.html">Framework</a>
+    <div class="header-left">
+        <h1>PokerForge</h1>
+        <nav>
+            <a href="Play.html">Play</a>
+            <a href="Home.html">Home</a>
+            <a href="Framework.html">Framework</a>
+        </nav>
+    </div>
+    <a href="Account.html" class="account-btn">Account</a>
 </header>
 
 <div class="container">

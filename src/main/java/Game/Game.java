@@ -9,4 +9,5 @@ public class Game {
     public Game(double gameId){
         this.gameId = gameId;
 }
+
 }

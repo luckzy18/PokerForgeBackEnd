@@ -8,17 +8,17 @@ import Game.*;
 
 import java.util.*;
 
-public class ForgeService implements ForgeImp{
-    ForgeImp fg;
+public class ForgeService {
+
     GamesComm games=new GamesComm();
-    public ForgeService(ForgeImp fg){this.fg=fg;}
+    public ForgeService(){}
 
 
-    @Override
+
     public void playerAction(String action, int amount) {
 
     }
-    @Override
+
     public double startGame(){
         double gameId=games.addGame();
         return gameId;

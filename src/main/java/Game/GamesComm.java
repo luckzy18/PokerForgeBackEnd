@@ -1,6 +1,7 @@
 package Game;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -10,31 +11,17 @@ public class GamesComm {
     private double gameId=0;
     Map<Double,Game> ongoingGames=new HashMap<Double,Game>();
     private Socket clientSocket=new Socket();
+    private PrintWriter out;
 
-    private static void Main(String[] args){
-        while()
-    }
+
+
     public GamesComm(){
-//        ProcessBuilder pb = new ProcessBuilder(
-//                "python",
-//                "ai_server.py"
-//        );
-//        try {
-//            pb.start();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
+        System.out.println("connection stsart");
         int port = 6000;
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("Server started on port " + port);
-
-
             clientSocket = serverSocket.accept(); // waits for client
-            System.out.println("Client connected!");
-
-
+            out = new PrintWriter(clientSocket.getOutputStream(), true); // auto-flush
     }catch(IOException e){
             e.printStackTrace();
         }
@@ -43,6 +30,13 @@ public class GamesComm {
     public double addGame(){
         gameId+=1;
         ongoingGames.put(gameId,new Game(gameId));
+        sendMessage(gameId,"create");
         return gameId;
+    }
+    private  void sendMessage(double id,String action){
+        String json = String.format(
+                "{\"action\":\"%s\",\"id\":%f}", action, id
+        );
+        out.println(json);
     }
 }

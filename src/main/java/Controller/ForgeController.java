@@ -1,13 +1,14 @@
 package Controller;
 
 
-import Service.ForgeImp;
+
+import Service.ForgeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
-import Service.ForgeImp;
+
 //import Tour.Service.*;
 
 import java.time.LocalDate;
@@ -17,9 +18,9 @@ import java.util.logging.Logger;
 @RestController
 @CrossOrigin
 public class ForgeController {
-    private ForgeImp fg;
+    private ForgeService fg;
 
-    public ForgeController(ForgeImp fg){
+    public ForgeController(ForgeService fg){
         this.fg=fg;
     }
 
@@ -30,7 +31,7 @@ public class ForgeController {
         return response;
     }
 
-    @GetMapping("/games/start")
+    @PostMapping("/games/start")
     public double startGame(){
         double gameSession=fg.startGame();
 
