@@ -16,25 +16,27 @@ public class GamesComm {
 
 
     public GamesComm(){
-        int port = 6000;
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
-            clientSocket = serverSocket.accept(); // waits for client
-            out = new PrintWriter(clientSocket.getOutputStream(), true); // auto-flush
-    }catch(IOException e){
-            e.printStackTrace();
-        }
+//        System.out.println("start");
+//        int port = 6000;
+//        try (ServerSocket serverSocket = new ServerSocket(port)) {
+//            clientSocket = serverSocket.accept(); // waits for client
+//            out = new PrintWriter(clientSocket.getOutputStream(), true); // auto-flush
+//
+//    }catch(IOException e){
+//            e.printStackTrace();
+//        }
     }
 
     public double addGame(){
         gameId+=1;
         ongoingGames.put(gameId,new Game(gameId));
-        sendMessage(gameId,"create");
+       // sendMessage(gameId,"create");
         return gameId;
     }
     private  void sendMessage(double id,String action){
-        String json = String.format(
+        String output = String.format(
                 "{\"action\":\"%s\",\"id\":%f}", action, id
         );
-        out.println(json);
+        out.println(output);
     }
 }
