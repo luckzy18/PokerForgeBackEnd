@@ -1,19 +1,13 @@
-package Controller;
+package forge.pokerforge.Controller;
 
 
 
-import Service.ForgeService;
-import org.springframework.http.ResponseEntity;
+import forge.pokerforge.Service.ForgeService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.http.HttpStatus;
-
 
 //import Tour.Service.*;
 
-import java.time.LocalDate;
 import java.util.*;
-import java.util.logging.Logger;
 
 @RestController
 @CrossOrigin
@@ -30,13 +24,20 @@ public class ForgeController {
         fg.playerAction(action,amount);
         return response;
     }
+    @GetMapping("/test")
+    public String test(){
+        System.out.println("this method works!");
+        return "this method works";
+    }
 
     @PostMapping("/games/start")
-    public double startGame(){
-        double gameSession=fg.startGame();
+    public Map<String,Object> startGame(){
 
-        return gameSession;
+        Map<String,Object> response=new HashMap<>();
+        //double gameSession=fg.startGame();
 
+        response.put("gameId",1);
+        return response;
     }
 
 }

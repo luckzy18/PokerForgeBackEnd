@@ -1,4 +1,4 @@
-package Game;
+package forge.pokerforge.Game;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,9 +16,7 @@ public class GamesComm {
 
 
     public GamesComm(){
-        System.out.println("connection stsart");
         int port = 6000;
-
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             clientSocket = serverSocket.accept(); // waits for client
             out = new PrintWriter(clientSocket.getOutputStream(), true); // auto-flush
