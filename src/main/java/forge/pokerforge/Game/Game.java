@@ -1,4 +1,4 @@
-package Game;
+package forge.pokerforge.Game;
 
 import java.io.IOException;
 import java.net.ServerSocket;
