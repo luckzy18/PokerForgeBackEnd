@@ -18,10 +18,12 @@ public class AccountController {
 
     @PostMapping("/login")
     public boolean login(@RequestBody LoginRequest loginRequest){
-        return ac.login(loginRequest.getEmail(),loginRequest.getPassword());
+        System.out.println("output");
+        boolean output=ac.login(loginRequest.getEmail(),loginRequest.getPassword());
+        return output;
     }
 
-    @PostMapping("/Register")
+    @PostMapping("/register")
     public boolean createAccount(@RequestBody CreateAccountRequest createAccountRequest){
         return ac.createAccount(createAccountRequest.getEmail(), createAccountRequest.getPassword());
     }
