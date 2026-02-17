@@ -1,12 +1,14 @@
 package forge.pokerforge.Controller;
 
+import forge.pokerforge.DTO.CreateAccountRequest;
 import forge.pokerforge.Service.AccountManagementService;
 import org.springframework.web.bind.annotation.*;
+import forge.pokerforge.DTO.LoginRequest;
 
 @RestController
 @CrossOrigin
 public class AccountController {
-    private AccountManagementService ac;
+    private final AccountManagementService ac;
 
 
     public AccountController(AccountManagementService ac){
@@ -14,21 +16,20 @@ public class AccountController {
         //connect to a databse probably a h2 probs done in the service
     }
 
-    @GetMapping
-    public boolean login(){
-        //check email
-        return false;
+    @PostMapping("/login")
+    public boolean login(@RequestBody LoginRequest loginRequest){
+        return ac.login(loginRequest.getEmail(),loginRequest.getPassword());
     }
 
-    @PostMapping
-    public boolean createAccount(){
-        return false;
+    @PostMapping("/Register")
+    public boolean createAccount(@RequestBody CreateAccountRequest createAccountRequest){
+        return ac.createAccount(createAccountRequest.getEmail(), createAccountRequest.getPassword());
     }
 
-    @DeleteMapping
-    public boolean deleteAccount(){
-        return false;
-    }
+//    @DeleteMapping("/{email}")
+//    public boolean deleteAccount(@PathVariable String email){
+//        return ac.deleteAccount(email);
+//    }
 
 
 

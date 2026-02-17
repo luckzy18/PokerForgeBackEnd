@@ -1,22 +1,11 @@
-package forge.pokerforge.User;
+package forge.pokerforge.DTO;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "users")
-public class User {
-
-
-    @Id
-    @Column(unique = true, nullable = false)
+public class CreateAccountRequest {
     private String email;
 
-    @Column(nullable = false)
     private String password;
 
-    public User (){}
-
-    public User(String email, String password) {
+    public CreateAccountRequest(String email, String password) {
         this.email = email;
         this.password = password;
     }
@@ -36,6 +25,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 }
