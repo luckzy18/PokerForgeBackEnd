@@ -1,13 +1,11 @@
 package forge.pokerforge.Game;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import forge.pokerforge.Game.Player;
 
-public class Game {
-    private final double gameId;
-    public Game(double gameId){
-        this.gameId = gameId;
-}
+public class Game{
+    Deck d;
+    int smal;
+    Player p;
+    public Game(){}
 
 }

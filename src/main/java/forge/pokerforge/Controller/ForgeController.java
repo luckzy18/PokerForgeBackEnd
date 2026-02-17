@@ -24,11 +24,6 @@ public class ForgeController {
         fg.playerAction(action,amount);
         return response;
     }
-    @GetMapping("/test")
-    public String test(){
-        System.out.println("this method works!");
-        return "this method works";
-    }
 
     @PostMapping("/games/start")
     public Map<String,Object> startGame(){
@@ -39,5 +34,6 @@ public class ForgeController {
         response.put("gameId",1);
         return response;
     }
+
 
 }

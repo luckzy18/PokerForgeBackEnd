@@ -133,7 +133,7 @@
     <h1>PokerForge</h1>
     <nav>
       <a href="Play.html">Play</a>
-      <a href="Home.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="Framework.html">Framework</a>
     </nav>
   </div>
@@ -143,13 +143,14 @@
 <div class="container">
   <div class="login-container">
     <h2>Login to PokerForge</h2>
-    <form action="Dashboard.html" method="post">
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
+    <form onsubmit="login(event)">
+      <input id="email" type="email" placeholder="Email" required>
+      <input id="password" type="password" placeholder="Password" required>
       <button type="submit" class="btn login-btn">Login</button>
     </form>
 
-    <form action="CreateAccount.html" method="get">
+
+    <form onsubmit="createAcc(event)" >
       <button type="submit" class="btn create-btn">Create Account</button>
     </form>
   </div>
@@ -159,6 +160,48 @@
   <p>This is a work in progress which will be finished one day</p>
   <p>&copy; 2025 PokerForge. All rights reserved.</p>
 </footer>
+<script>
+  async function createAcc(event){
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
+    const response = await fetch("/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    const success = await response.json();
+
+    if (success) {
+      alert("account created")
+    } else {
+      alert("email already in use");
+    }
+  }
+
+  async function login(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const response = await fetch("/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    const success = await response.json();
+
+    if (success) {
+      alert("logged in")
+    } else {
+      alert("Invalid email or password");
+    }
+  }
+</script>
 </body>
+
+
 </html>
