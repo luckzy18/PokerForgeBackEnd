@@ -9,4 +9,7 @@ public class Player {
         this.username=username;
         this.money=money;
     }
+    public void setMoney(double money){
+        this.money=money;
+    }
 }
