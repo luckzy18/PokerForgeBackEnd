@@ -19,9 +19,9 @@ public class ForgeService {
 
     }
 
-//    public void StartGames(...){
-//
-//    }
+    public void startGame(Game g){
+
+    }
 
 
 //    public double startGame(){

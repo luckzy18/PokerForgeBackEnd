@@ -16,11 +16,17 @@ import forge.pokerforge.Game.GamesStorage;
 @CrossOrigin
 public class ForgeController {
     private ForgeService fg;
-    private GamesStorage gm;
+
 
     public ForgeController(ForgeService fg){
-        this.fg=fg;gm=new GamesStorage();
+        this.fg=fg;
     }
+    @GetMapping("/api/games")
+    public String playerAction(){
+
+        return "eureka";
+    }
+
 
     @GetMapping("/games/actions")
     public String playerAction(String action,int amount){
@@ -31,12 +37,11 @@ public class ForgeController {
 
     @PostMapping("/games/start")
     public Map<String,Object> startGame(){
-
         Map<String,Object> response=new HashMap<>();
         Game g=new Game(0,0,"easy",1000,"warrior");
-        gm.addGame(g);
+        fg.startGame(g);
 
-        response.put("gameId",1);
+        response.put("gameId",g.toString());
         return response;
     }
 

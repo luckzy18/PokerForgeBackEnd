@@ -1,7 +1,6 @@
 package forge.pokerforge.Game;
 
-import forge.pokerforge.Game.Player;
-import forge.pokerforge.Game.Deck;
+import forge.pokerforge.Game.Player.*;
 
 public class Game{
 
@@ -14,30 +13,35 @@ public class Game{
     int smallBid;
     int bigBid;
     String difficulty;
+
     int startMoney;
-    Player p;
+    Player player;
+    private Card[] floor;
+    String gameHistory;
+    //need to be concise and able to unpack
     Player bot;
     public Game(int smallBid, int bigBid,String difficulty, double startMoney,String user ){
         this.deck=new Deck();
         this.smallBid=smallBid;
         this.bigBid=bigBid;
         this.difficulty=difficulty;
-        this.p=new Player(user,startMoney);
-        this.bot=new Player(difficulty,startMoney);
-        Card[] C=new Card[4];
+        this.player=new UserPlayer(user,startMoney);
+        this.bot=new BotPlayer(difficulty,startMoney,"Easy");
+        this.floor=new Card[4];
+
+    }
+    public void gameStart(){
+        player.bet(smallBid);
+        bot.bet(bigBid);
+
     }
 
-    public void startGame(){
-        deck.dealCards(p);
+    public void betRound(){
+        deck.dealCards(player);
         deck.dealCards(bot);
-        setBigBlind(p);
-        setsmallBlind(bot);
-
-
-
         }
         //reset highest round bet
     }
 
 
-}
+
