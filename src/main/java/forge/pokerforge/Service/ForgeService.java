@@ -19,6 +19,11 @@ public class ForgeService {
 
     }
 
+    public void startGame(Game g){
+
+    }
+
+
 //    public double startGame(){
 //
 //
