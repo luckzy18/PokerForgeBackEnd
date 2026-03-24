@@ -27,4 +27,21 @@ public class Deck {
         index+=1;
     }
 
+    public void dealFlop(Card[] floor){
+        burnCard();
+        floor[0]=oneCard();
+        floor[1]=oneCard();
+        floor[2]=oneCard();
+    }
+
+    public void dealTurn(Card[] floor){
+        burnCard();
+        floor[3]=oneCard();
+    }
+    public void dealRiver(Card[] floor){
+        burnCard();
+        floor[4]=oneCard();
+    }
+
+
 }
