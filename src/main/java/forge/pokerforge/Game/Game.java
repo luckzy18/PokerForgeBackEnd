@@ -16,7 +16,7 @@ public class Game{
 
     int startMoney;
     Player player;
-    private Card[] floor;
+    Card[] floor;
     String gameHistory;
     //need to be concise and able to unpack
     Player bot;
@@ -30,15 +30,44 @@ public class Game{
         this.floor=new Card[4];
 
     }
-    public void gameStart(){
+    public void gameHand(){
         player.bet(smallBid);
         bot.bet(bigBid);
+        betRound();
+        if(checkForFoldANDAllIn()){
+            return;
+        }
+        flop();
+        betRound();
+        if(checkForFoldANDAllIn()){
+            return;
+        }
+        turn();
+        betRound();
+        if(checkForFoldANDAllIn()){
+            return;
+        }
+        river();
+        betRound();
+    }
 
+    private void turn(){
+        deck.dealTurn(this.floor);
+    }
+    private void river(){
+        deck.dealRiver(this.floor);
+    }
+    private void flop(){
+        deck.dealFlop(this.floor);
+    }
+    public boolean checkForFoldANDAllIn(){
+        return false;
     }
 
     public void betRound(){
         deck.dealCards(player);
         deck.dealCards(bot);
+
         }
         //reset highest round bet
     }
